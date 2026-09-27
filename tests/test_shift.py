@@ -473,3 +473,91 @@ class TestReviewerModel:
         m = ReviewerModel(gamma=1.0, a=1.0)
         p = m.review_prob(0.5, 0.5)
         assert 0.0 < p < 1.0
+
+
+# ===========================================================================
+# The bridge: behaviour to deployed risk
+# ===========================================================================
+
+class TestBridge:
+
+    @pytest.fixture(scope="class")
+    def rows(self):
+        from doubt.bridge import compare_interventions
+        return compare_interventions(trials=40, seed=17)
+
+    def test_outcome_based_accountability_breaks_the_guarantee(self, rows):
+        by = {r["regime"]: r for r in rows}
+        assert (by["outcome-based"]["uncorrected_violation_rate"]
+                > 4 * by["process-based"]["uncorrected_violation_rate"])
+
+    def test_the_correction_restores_the_error_rate(self, rows):
+        by = {r["regime"]: r for r in rows}
+        outc = by["outcome-based"]
+        assert outc["corrected_risk"] < outc["uncorrected_risk"] * 0.6
+
+    def test_the_correction_cannot_restore_throughput(self, rows):
+        """
+        The managerial point. Reweighting fixes the error rate and leaves the
+        automation case destroyed, because reviewer behaviour is what consumed
+        the throughput and no statistical correction returns it.
+        """
+        by = {r["regime"]: r for r in rows}
+        outc, proc = by["outcome-based"], by["process-based"]
+        assert outc["corrected_exposed"] < proc["uncorrected_exposed"] * 0.5
+
+    def test_reporting_any_single_column_misleads(self, rows):
+        """
+        REGRESSION on an interpretation. Total errors alone recommends the
+        regime that BREAKS its guarantee; violation rate alone recommends the
+        regime that automates most and therefore lets more absolute errors
+        through. Both are true and neither is sufficient.
+        """
+        from doubt.bridge import cost_of_accountability
+        c = cost_of_accountability(rows)
+        proc, outc = c["process_based"], c["outcome_based"]
+
+        # process-based keeps the promise
+        assert proc["guarantee_violation_rate"] < outc["guarantee_violation_rate"]
+        # and still lets more total errors through, because it automates more
+        assert proc["errors_reaching_production"] > outc["errors_reaching_production"]
+        assert proc["share_automated"] > outc["share_automated"]
+
+    def test_the_tension_is_documented_not_resolved_silently(self):
+        from doubt.bridge import cost_of_accountability
+        import inspect
+        doc = " ".join(inspect.getdoc(cost_of_accountability).split())
+        assert "different failures" in doc
+        assert "not apples to apples" in doc
+
+    def test_costs_are_counts_not_currency(self):
+        """
+        What a wrong decision costs varies by orders of magnitude across the
+        settings this could apply to, and would be the weakest number in the
+        analysis.
+        """
+        from doubt.bridge import compare_interventions, cost_of_accountability
+        c = cost_of_accountability(compare_interventions(trials=15, seed=1))
+
+        def keys(d, prefix=""):
+            out = []
+            for k, v in d.items():
+                out.append(f"{prefix}{k}")
+                if isinstance(v, dict):
+                    out += keys(v, f"{prefix}{k}.")
+            return out
+
+        names = " ".join(keys(c)).lower()
+        for money in ("usd", "dollar", "cost_", "_cost", "revenue", "price"):
+            assert money not in names, f"a currency figure crept in: {money}"
+
+    def test_manual_review_load_is_reported(self, rows):
+        """
+        832,000 manual reviews per million decisions is the real cost of
+        outcome-based accountability, and it is invisible if only error rates
+        are reported.
+        """
+        from doubt.bridge import cost_of_accountability
+        c = cost_of_accountability(rows)
+        assert c["outcome_based"]["decisions_reviewed_manually"] > \
+               c["process_based"]["decisions_reviewed_manually"] * 3

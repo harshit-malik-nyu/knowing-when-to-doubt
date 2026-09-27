@@ -199,6 +199,42 @@ Both moderators exist as natural variation across teams and workflows, so
 neither needs manipulating — which is what makes them testable in a field
 setting rather than only in a lab.
 
+## What an accountability regime is worth
+
+The two halves have run separately to here. `bridge.py` joins them: reviewers
+are simulated from the decision model, their routing is fed into the risk-control
+machinery, and the deployed outcome is measured under each regime.
+
+Per million decisions, with the model, the cases and reviewer competence held
+fixed — only the evaluation scheme differs:
+
+| Arrangement | Guarantee fails | Error rate | Automated | Errors reaching production | Manual reviews |
+|---|---:|---:|---:|---:|---:|
+| Process-based | **6%** | 0.034 | **89%** | 30,146 | 111,914 |
+| Outcome-based | 84% | 0.087 | 17% | 14,543 | **832,843** |
+| Outcome-based + correction | 21% | 0.034 | 16% | **5,317** | — |
+
+**Reporting any single column recommends the wrong thing.** Total errors alone
+picks outcome-based — the regime that breaks its guarantee. Violation rate
+alone picks process-based — the regime that automates most and therefore lets
+more absolute errors through. Both readings are true and neither is sufficient.
+
+The structure underneath: **outcome-based accountability does not merely break
+the guarantee, it destroys the automation case.** 832,843 manual reviews per
+million decisions means reviewers are hand-checking 83% of the work. The
+statistical correction restores the error rate and cannot restore throughput,
+because reviewer behaviour is what consumed it.
+
+That is a managerial result and it exists only because both halves sit in one
+model. The methods half has no theory of where routing comes from; the
+behavioural half has no machinery for turning routing into risk. Two papers
+citing each other would not produce this table.
+
+Costs are reported in counts rather than currency throughout. What a wrong
+decision costs varies by orders of magnitude across the settings this could
+apply to and would be the weakest number in the analysis; the count is
+defensible and the valuation belongs to whoever deploys.
+
 ## What is and is not established
 
 **Established by simulation**, which is the appropriate use of simulation for

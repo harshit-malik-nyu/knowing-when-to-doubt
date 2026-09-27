@@ -1,0 +1,64 @@
+{
+  "regimes": [
+    {
+      "regime": "process-based",
+      "accountability": 0.0,
+      "alpha": 0.05,
+      "trials": 100,
+      "uncorrected_risk": 0.033944720514752676,
+      "uncorrected_violation_rate": 0.06,
+      "uncorrected_exposed": 621.66,
+      "corrected_risk": 0.03417646556957561,
+      "corrected_violation_rate": 0.06,
+      "corrected_exposed": 621.81
+    },
+    {
+      "regime": "mixed",
+      "accountability": 0.5,
+      "alpha": 0.05,
+      "trials": 100,
+      "uncorrected_risk": 0.04005972050932468,
+      "uncorrected_violation_rate": 0.25,
+      "uncorrected_exposed": 425.05,
+      "corrected_risk": 0.03426985556767965,
+      "corrected_violation_rate": 0.12,
+      "corrected_exposed": 422.49
+    },
+    {
+      "regime": "outcome-based",
+      "accountability": 1.0,
+      "alpha": 0.05,
+      "trials": 100,
+      "uncorrected_risk": 0.08700144501461254,
+      "uncorrected_violation_rate": 0.84,
+      "uncorrected_exposed": 117.01,
+      "corrected_risk": 0.0336910336769239,
+      "corrected_violation_rate": 0.21,
+      "corrected_exposed": 110.47
+    }
+  ],
+  "cost": {
+    "annual_decisions": 1000000,
+    "process_based": {
+      "guarantee_violation_rate": 0.06,
+      "error_rate_in_production": 0.033944720514752676,
+      "share_automated": 0.8880857142857143,
+      "errors_reaching_production": 30145.82136457307,
+      "decisions_reviewed_manually": 111914.28571428574
+    },
+    "outcome_based": {
+      "guarantee_violation_rate": 0.84,
+      "error_rate_in_production": 0.08700144501461254,
+      "share_automated": 0.16715714285714287,
+      "errors_reaching_production": 14542.91297308545,
+      "decisions_reviewed_manually": 832842.8571428572
+    },
+    "outcome_based_corrected": {
+      "guarantee_violation_rate": 0.21,
+      "error_rate_in_production": 0.0336910336769239,
+      "share_automated": 0.1578142857142857,
+      "errors_reaching_production": 5316.926414699691
+    },
+    "note": "Process-based accountability holds its guarantee and produces MORE total errors, because it automates far more volume. Outcome-based breaks its guarantee and produces fewer, because reviewers are checking most of the work by hand. These are different failures; reporting either alone recommends the wrong regime."
+  }
+}
