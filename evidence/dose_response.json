@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.0,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.095,
+    "weighted_violation_rate": 0.095,
+    "naive_mean_risk": 0.03486436503081838,
+    "weighted_mean_risk": 0.03486436503081838,
+    "naive_mean_exposed": 456.265,
+    "weighted_mean_exposed": 456.265
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.2,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.175,
+    "weighted_violation_rate": 0.1,
+    "naive_mean_risk": 0.03913656642604818,
+    "weighted_mean_risk": 0.034687074319284625,
+    "naive_mean_exposed": 399.4,
+    "weighted_mean_exposed": 397.545
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.4,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.315,
+    "weighted_violation_rate": 0.1,
+    "naive_mean_risk": 0.044962633384724435,
+    "weighted_mean_risk": 0.03354056603861461,
+    "naive_mean_exposed": 342.97,
+    "weighted_mean_exposed": 338.9
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.6,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.53,
+    "weighted_violation_rate": 0.125,
+    "naive_mean_risk": 0.05286451119108123,
+    "weighted_mean_risk": 0.03462386784937452,
+    "naive_mean_exposed": 286.715,
+    "weighted_mean_exposed": 281.275
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.8,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.78,
+    "weighted_violation_rate": 0.14,
+    "naive_mean_risk": 0.06462036679435398,
+    "weighted_mean_risk": 0.03375070118021012,
+    "naive_mean_exposed": 231.45,
+    "weighted_mean_exposed": 224.03
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 1.0,
+    "alpha": 0.05,
+    "trials": 200,
+    "naive_violation_rate": 0.9,
+    "weighted_violation_rate": 0.125,
+    "naive_mean_risk": 0.08358536307886516,
+    "weighted_mean_risk": 0.031935864893039026,
+    "naive_mean_exposed": 176.23,
+    "weighted_mean_exposed": 166.78
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "ignores_signal",
+    "intensity": 0.0,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.10666666666666667,
+    "weighted_violation_rate": 0.10666666666666667,
+    "naive_mean_risk": 0.03406767288576797,
+    "weighted_mean_risk": 0.03406767288576797,
+    "naive_mean_exposed": 390.96,
+    "weighted_mean_exposed": 390.96
+  },
+  {
+    "policy": "reviews_low_confidence",
+    "intensity": 1.0,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.0,
+    "weighted_violation_rate": 0.04666666666666667,
+    "naive_mean_risk": 0.016726847170275387,
+    "weighted_mean_risk": 0.03355667496045753,
+    "naive_mean_exposed": 408.8666666666667,
+    "weighted_mean_exposed": 415.98
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.4,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.32666666666666666,
+    "weighted_violation_rate": 0.14,
+    "naive_mean_risk": 0.043506427073286356,
+    "weighted_mean_risk": 0.03393795405198055,
+    "naive_mean_exposed": 294.42,
+    "weighted_mean_exposed": 291.49333333333334
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 0.7,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.6266666666666667,
+    "weighted_violation_rate": 0.14,
+    "naive_mean_risk": 0.05679660678967798,
+    "weighted_mean_risk": 0.03347528578671397,
+    "naive_mean_exposed": 221.07333333333332,
+    "weighted_mean_exposed": 215.69333333333333
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "intensity": 1.0,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.8333333333333334,
+    "weighted_violation_rate": 0.16666666666666666,
+    "naive_mean_risk": 0.0821969931033308,
+    "weighted_mean_risk": 0.032534132806528906,
+    "naive_mean_exposed": 149.66,
+    "weighted_mean_exposed": 141.92
+  },
+  {
+    "policy": "reviews_the_middle",
+    "intensity": 1.0,
+    "alpha": 0.05,
+    "trials": 150,
+    "naive_violation_rate": 0.006666666666666667,
+    "weighted_violation_rate": 0.13333333333333333,
+    "naive_mean_risk": 0.02082701977996891,
+    "weighted_mean_risk": 0.033527093924700054,
+    "naive_mean_exposed": 269.6933333333333,
+    "weighted_mean_exposed": 273.24
+  }
+]
