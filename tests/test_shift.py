@@ -278,3 +278,119 @@ class TestDataGeneration:
         doc = " ".join(sh.__doc__.split())
         assert "appropriate use of simulation" in doc
         assert "Nothing is proved here" in doc
+
+
+# ===========================================================================
+# Estimating an unknown routing policy
+# ===========================================================================
+
+class TestPolicyEstimation:
+
+    def test_isotonic_fit_is_monotone(self):
+        from doubt.estimate import isotonic_fit
+        xs = [i / 10 for i in range(11)]
+        ys = [0.1, 0.3, 0.2, 0.4, 0.35, 0.6, 0.55, 0.7, 0.9, 0.85, 1.0]
+        fitted = [y for _, y in isotonic_fit(xs, ys)]
+        assert fitted == sorted(fitted)
+
+    def test_estimator_recovers_the_direction(self):
+        """
+        Fitted in both directions and the better kept, because assuming the
+        intended policy would bake in the assumption the study exists to test.
+        """
+        import random
+
+        from doubt.estimate import estimate_policy
+        from doubt.shift import draw_cases, route
+
+        rng = random.Random(3)
+        for name, expect_up in [("reviews_high_stakes", True),
+                                ("reviews_low_confidence", False)]:
+            pol = RoutingPolicy(name, intensity=1.0)
+            obs = route(draw_cases(3000, rng=rng), pol, rng)
+            est = estimate_policy(obs)
+            got_up = est.review_prob(0.9) > est.review_prob(0.1)
+            assert got_up == expect_up, f"{name}: wrong direction recovered"
+
+    def test_estimate_improves_with_more_observations(self):
+        import random
+
+        from doubt.estimate import estimate_policy
+        from doubt.shift import draw_cases, route
+
+        pol = RoutingPolicy("reviews_high_stakes", 1.0)
+        grid = [i / 20 for i in range(21)]
+
+        def err(n, seed):
+            rng = random.Random(seed)
+            est = estimate_policy(route(draw_cases(n, rng=rng), pol, rng))
+            return sum(abs(est.review_prob(s) - pol.review_prob(s))
+                       for s in grid) / len(grid)
+
+        assert err(2000, 5) < err(120, 5)
+
+    def test_estimated_correction_beats_no_correction(self):
+        from doubt.estimate import compare_oracle_and_estimated
+        r = compare_oracle_and_estimated(
+            RoutingPolicy("reviews_high_stakes", 1.0),
+            n_pilot=600, trials=40, seed=9).as_dict()
+        assert r["estimated_violation_rate"] < r["naive_violation_rate"] / 2
+
+    def test_oracle_does_not_depend_on_pilot_size(self):
+        """
+        REGRESSION. The pilot and the calibration draw originally shared a
+        random stream, so a larger pilot shifted every subsequent draw and the
+        oracle arm appeared to move with a quantity it does not use. A
+        confound is invisible unless something varies that should not.
+        """
+        from doubt.estimate import compare_oracle_and_estimated
+        small = compare_oracle_and_estimated(
+            RoutingPolicy("reviews_high_stakes", 1.0),
+            n_pilot=100, trials=40, seed=9).as_dict()["oracle_violation_rate"]
+        large = compare_oracle_and_estimated(
+            RoutingPolicy("reviews_high_stakes", 1.0),
+            n_pilot=1200, trials=40, seed=9).as_dict()["oracle_violation_rate"]
+        assert small == large
+
+    def test_weights_are_floored(self):
+        """
+        Where the estimated review probability approaches one the implied
+        weight approaches zero and a handful of cases carry the estimate.
+        Clipping trades a little bias for a large reduction in variance.
+        """
+        import inspect
+
+        from doubt import estimate
+        src = inspect.getsource(estimate.estimated_threshold)
+        assert "max(floor," in src
+
+    def test_empty_observations_are_safe(self):
+        from doubt.estimate import estimate_policy
+        est = estimate_policy([])
+        assert est.review_prob(0.5) == 0.0
+
+
+class TestFailureBoundary:
+
+    def test_exposure_is_reported_with_violations(self):
+        """
+        REGRESSION on an interpretation, not on code. Violation rate appeared
+        to improve as the unobserved driver strengthened, which was the
+        correction refusing to accept anything rather than the guarantee
+        holding. A violation rate without exposure beside it is
+        uninterpretable.
+        """
+        from doubt.estimate import hidden_driver_experiment
+        rows = hidden_driver_experiment(
+            RoutingPolicy("reviews_high_stakes", 1.0), [0.0, 0.6],
+            trials=25, seed=13)
+        for r in rows:
+            assert "estimated_mean_exposed" in r
+            assert "naive_mean_exposed" in r
+
+    def test_an_unobserved_driver_collapses_exposure(self):
+        from doubt.estimate import hidden_driver_experiment
+        rows = hidden_driver_experiment(
+            RoutingPolicy("reviews_high_stakes", 1.0), [0.0, 0.7],
+            trials=30, seed=13)
+        assert rows[1]["estimated_mean_exposed"] < rows[0]["estimated_mean_exposed"] * 0.6

@@ -1,0 +1,52 @@
+[
+  {
+    "policy": "reviews_high_stakes",
+    "n_pilot": 100,
+    "trials": 150,
+    "alpha": 0.05,
+    "naive_violation_rate": 0.8933333333333333,
+    "oracle_violation_rate": 0.16,
+    "estimated_violation_rate": 0.26,
+    "mean_absolute_policy_error": 0.11240698652199627
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "n_pilot": 200,
+    "trials": 150,
+    "alpha": 0.05,
+    "naive_violation_rate": 0.8933333333333333,
+    "oracle_violation_rate": 0.16,
+    "estimated_violation_rate": 0.24,
+    "mean_absolute_policy_error": 0.09118698852706911
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "n_pilot": 400,
+    "trials": 150,
+    "alpha": 0.05,
+    "naive_violation_rate": 0.8933333333333333,
+    "oracle_violation_rate": 0.16,
+    "estimated_violation_rate": 0.22,
+    "mean_absolute_policy_error": 0.07647556359496642
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "n_pilot": 800,
+    "trials": 150,
+    "alpha": 0.05,
+    "naive_violation_rate": 0.8933333333333333,
+    "oracle_violation_rate": 0.16,
+    "estimated_violation_rate": 0.18,
+    "mean_absolute_policy_error": 0.06007590471852397
+  },
+  {
+    "policy": "reviews_high_stakes",
+    "n_pilot": 1600,
+    "trials": 150,
+    "alpha": 0.05,
+    "naive_violation_rate": 0.8933333333333333,
+    "oracle_violation_rate": 0.16,
+    "estimated_violation_rate": 0.14,
+    "mean_absolute_policy_error": 0.05349228348068248
+  }
+]

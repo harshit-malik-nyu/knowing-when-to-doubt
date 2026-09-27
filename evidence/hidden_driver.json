@@ -1,0 +1,37 @@
+[
+  {
+    "hidden_strength": 0.0,
+    "naive_violation_rate": 0.9,
+    "estimated_violation_rate": 0.19166666666666668,
+    "naive_mean_exposed": 174.025,
+    "estimated_mean_exposed": 164.79166666666666
+  },
+  {
+    "hidden_strength": 0.15,
+    "naive_violation_rate": 0.9666666666666667,
+    "estimated_violation_rate": 0.225,
+    "naive_mean_exposed": 149.71666666666667,
+    "estimated_mean_exposed": 139.85833333333332
+  },
+  {
+    "hidden_strength": 0.3,
+    "naive_violation_rate": 0.9916666666666667,
+    "estimated_violation_rate": 0.25,
+    "naive_mean_exposed": 128.39166666666668,
+    "estimated_mean_exposed": 116.44166666666666
+  },
+  {
+    "hidden_strength": 0.5,
+    "naive_violation_rate": 1.0,
+    "estimated_violation_rate": 0.18333333333333332,
+    "naive_mean_exposed": 98.50833333333334,
+    "estimated_mean_exposed": 82.50833333333334
+  },
+  {
+    "hidden_strength": 0.7,
+    "naive_violation_rate": 1.0,
+    "estimated_violation_rate": 0.11666666666666667,
+    "naive_mean_exposed": 67.58333333333333,
+    "estimated_mean_exposed": 48.766666666666666
+  }
+]

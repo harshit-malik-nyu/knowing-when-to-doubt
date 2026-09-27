@@ -94,6 +94,69 @@ The third is the one that matters for the joint design below. In the machine
 case you would remove the feedback if you could. Here how people route is the
 thing being studied.
 
+## The policy is unknown — does the correction survive estimating it?
+
+The correction above uses the true routing probability. In the machine-feedback
+literature that is available: an acquisition function is designed and its form
+is known. Here nobody wrote the rule down.
+
+`estimate.py` recovers π(s) by isotonic regression of the review indicator on
+confidence, fitted in both directions so the intended policy is not assumed.
+Three arms on identical data — uncorrected, corrected with the true policy,
+corrected with a policy estimated from a pilot:
+
+| Pilot decisions | Uncorrected | Oracle | Estimated | Gap | Policy error |
+|---:|---:|---:|---:|---:|---:|
+| 100 | 89.3% | 16.0% | 26.0% | +10.0% | 0.112 |
+| 200 | 89.3% | 16.0% | 24.0% | +8.0% | 0.091 |
+| 400 | 89.3% | 16.0% | 22.0% | +6.0% | 0.076 |
+| **800** | 89.3% | 16.0% | **18.0%** | **+2.0%** | 0.060 |
+| 1,600 | 89.3% | 16.0% | 14.0% | −2.0% | 0.053 |
+
+**The gap closes monotonically and is gone by roughly 800 observed routing
+decisions** — a pilot an organisation can actually run. The method does not
+require knowing the rule, only observing it for a while.
+
+The uncorrected and oracle arms are flat across pilot size because neither uses
+the pilot. That flatness is a check, not a coincidence: an earlier version drew
+the pilot from the same random stream as calibration, so a larger pilot shifted
+every subsequent draw and the oracle appeared to move with a quantity it does
+not depend on. The confound is invisible unless something varies that should
+not.
+
+## Where the correction genuinely fails
+
+The estimator assumes routing depends on confidence alone. Real reviewers also
+route on case value, client and workload. Where such a driver correlates with
+correctness but is invisible to the estimator, the weights are wrong in a way
+more data cannot fix — an omitted-variable problem, not a sample-size one.
+
+Measured by introducing exactly that driver:
+
+| Unobserved share of routing | Uncorrected fails | Corrected fails | Corrected exposure |
+|---:|---:|---:|---:|
+| 0% | 90.0% | 19.2% | 165 |
+| 15% | 96.7% | 22.5% | 140 |
+| 30% | 99.2% | 25.0% | 116 |
+| 50% | 100.0% | 18.3% | 83 |
+| 70% | 100.0% | **11.7%** | **49** |
+
+**Read the last two columns together.** The violation rate appears to improve
+past 30%, which is not the correction working — it is the correction refusing
+to auto-accept anything. Exposure falls from 165 cases to 49, a 70% collapse,
+and the violation rate is being computed on what little remains.
+
+A threshold that accepts almost nothing has an excellent violation rate and no
+value. That failure mode appeared once already in this project, as a threshold
+search that returned "accept nothing" and reported perfect coverage; it
+reappears here disguised as a success. Exposure is now reported beside every
+violation rate for that reason.
+
+**So the honest limit:** the correction holds while routing is substantially
+driven by the confidence signal, and degrades into uselessness — not into
+visible failure — once an unobserved driver dominates. Detecting that in
+deployment requires monitoring exposure, not coverage.
+
 ## What is and is not established
 
 **Established by simulation**, which is the appropriate use of simulation for
