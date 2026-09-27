@@ -157,6 +157,48 @@ driven by the confidence signal, and degrades into uselessness — not into
 visible failure — once an unobserved driver dominates. Detecting that in
 deployment requires monitoring exposure, not coverage.
 
+## Why a reviewer would behave that way
+
+The routing policies above are stipulated. `reviews_high_stakes` breaks the
+guarantee, but nothing so far explains why anyone would route that way.
+`src/doubt/reviewer.py` derives it.
+
+**The organisation's objective wants low-confidence cases reviewed**: expected
+value of review is `v · P(error|s) · q`, which falls in confidence.
+
+**The reviewer faces a second term.** On a high-stakes case, having reviewed is
+protective whether or not an error was present, because the question afterwards
+is "did you check" rather than "was checking warranted":
+
+    V_rev(s, v) = β · v · P(error|s) · q  +  γ · v · a
+
+The insurance term depends on stakes alone, not on P(error | s). As it grows,
+routing tracks stakes rather than confidence — and because **stakes and
+confidence are positively correlated** in document work (large contracts are
+more boilerplate, not less), routing on stakes becomes routing on confidence.
+
+| Insurance weight | Accountability | Confidence gradient | Breaks? |
+|---:|---:|---:|:---:|
+| 0.0 | any | −1.6% | no |
+| 0.6 | 1.0 | +19.5% | yes |
+| 1.2 | **0.0** | **−1.6%** | **no** |
+| 1.2 | 1.0 | **+51.8%** | yes |
+
+Two predictions follow that the bare hypothesis does not make:
+
+**Process-based accountability protects.** At `a = 0` the gradient stays
+negative however strong the insurance motive. That is surprising and
+actionable — it implies an organisation can fix a statistical problem by
+changing how it evaluates reviewers rather than by changing the model.
+
+**The failure has a boundary.** Where stakes and confidence are uncorrelated
+the gradient is −12.7% and the guarantee is safe. The failure is not universal,
+and a study that cannot separate the two cases cannot test the account.
+
+Both moderators exist as natural variation across teams and workflows, so
+neither needs manipulating — which is what makes them testable in a field
+setting rather than only in a lab.
+
 ## What is and is not established
 
 **Established by simulation**, which is the appropriate use of simulation for

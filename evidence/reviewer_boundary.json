@@ -1,0 +1,52 @@
+[
+  {
+    "gamma": 1.2,
+    "accountability": 1.0,
+    "stake_correlation": 0.0,
+    "review_rate_low_confidence": 0.6473214285714286,
+    "review_rate_high_confidence": 0.5201612903225806,
+    "confidence_gradient": -0.12716013824884798,
+    "predicts_shift": false,
+    "n": 6000
+  },
+  {
+    "gamma": 1.2,
+    "accountability": 1.0,
+    "stake_correlation": 0.25,
+    "review_rate_low_confidence": 0.5907738095238095,
+    "review_rate_high_confidence": 0.6224798387096774,
+    "confidence_gradient": 0.031706029185867846,
+    "predicts_shift": true,
+    "n": 6000
+  },
+  {
+    "gamma": 1.2,
+    "accountability": 1.0,
+    "stake_correlation": 0.5,
+    "review_rate_low_confidence": 0.4756944444444444,
+    "review_rate_high_confidence": 0.7560483870967742,
+    "confidence_gradient": 0.2803539426523298,
+    "predicts_shift": true,
+    "n": 6000
+  },
+  {
+    "gamma": 1.2,
+    "accountability": 1.0,
+    "stake_correlation": 0.75,
+    "review_rate_low_confidence": 0.2926587301587302,
+    "review_rate_high_confidence": 0.8709677419354839,
+    "confidence_gradient": 0.5783090117767538,
+    "predicts_shift": true,
+    "n": 6000
+  },
+  {
+    "gamma": 1.2,
+    "accountability": 1.0,
+    "stake_correlation": 1.0,
+    "review_rate_low_confidence": 0.16121031746031747,
+    "review_rate_high_confidence": 0.9329637096774194,
+    "confidence_gradient": 0.7717533922171019,
+    "predicts_shift": true,
+    "n": 6000
+  }
+]

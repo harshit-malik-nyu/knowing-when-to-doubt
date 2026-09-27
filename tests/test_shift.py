@@ -394,3 +394,82 @@ class TestFailureBoundary:
             RoutingPolicy("reviews_high_stakes", 1.0), [0.0, 0.7],
             trials=30, seed=13)
         assert rows[1]["estimated_mean_exposed"] < rows[0]["estimated_mean_exposed"] * 0.6
+
+
+# ===========================================================================
+# The reviewer model
+# ===========================================================================
+
+class TestReviewerModel:
+
+    def test_organisation_wants_low_confidence_reviewed(self):
+        """The intended policy falls out of the organisation's own objective."""
+        from doubt.reviewer import ReviewerModel
+        m = ReviewerModel()
+        assert m.organisational_value(0.1, 1.0) > m.organisational_value(0.9, 1.0)
+
+    def test_without_insurance_the_reviewer_agrees_with_the_organisation(self):
+        """
+        At gamma zero the reviewer's objective is the organisation's, and
+        routing is the intended policy. That is the control the whole account
+        rests against.
+        """
+        from doubt.reviewer import ReviewerModel, simulate_routing
+        p = simulate_routing(ReviewerModel(gamma=0.0), seed=3)
+        assert p.confidence_gradient < 0
+        assert not p.predicts_shift
+
+    def test_insurance_plus_outcome_accountability_produces_the_damage(self):
+        """H3, derived rather than assumed."""
+        from doubt.reviewer import ReviewerModel, simulate_routing
+        p = simulate_routing(ReviewerModel(gamma=1.2, a=1.0), seed=3)
+        assert p.confidence_gradient > 0.2
+        assert p.predicts_shift
+
+    def test_process_accountability_protects(self):
+        """
+        H4, the moderator, and the most useful implication: an organisation
+        can fix a statistical problem by changing how it evaluates reviewers
+        rather than by changing the model.
+        """
+        from doubt.reviewer import ReviewerModel, simulate_routing
+        outcome = simulate_routing(ReviewerModel(gamma=1.2, a=1.0), seed=3)
+        process = simulate_routing(ReviewerModel(gamma=1.2, a=0.0), seed=3)
+        assert process.confidence_gradient < 0
+        assert outcome.confidence_gradient > process.confidence_gradient
+
+    def test_the_failure_requires_stakes_to_track_confidence(self):
+        """
+        H5, the boundary. Where stakes and confidence are uncorrelated, a
+        strong insurance motive is harmless — the failure is not universal,
+        and a design that cannot separate the two cannot test the theory.
+        """
+        from doubt.reviewer import correlation_sweep
+        rows = {r["stake_correlation"]: r for r in
+                correlation_sweep([0.0, 1.0], n=4000, seed=3)}
+        assert rows[0.0]["confidence_gradient"] < 0
+        assert rows[1.0]["confidence_gradient"] > 0.3
+
+    def test_the_gradient_is_monotone_in_the_insurance_motive(self):
+        from doubt.reviewer import ReviewerModel, simulate_routing
+        grads = [simulate_routing(ReviewerModel(gamma=g, a=1.0), seed=3)
+                 .confidence_gradient for g in (0.0, 0.4, 0.8, 1.2)]
+        assert grads == sorted(grads), f"not monotone: {grads}"
+
+    def test_review_probability_stays_in_range(self):
+        from doubt.reviewer import ReviewerModel
+        m = ReviewerModel(gamma=3.0, a=1.0)
+        for s in (0.0, 0.5, 1.0):
+            for v in (0.0, 0.5, 1.0):
+                assert 0.0 <= m.review_prob(s, v) <= 1.0
+
+    def test_routing_is_stochastic_not_a_cutoff(self):
+        """
+        A deterministic rule would make the policy trivially estimable in a
+        way real behaviour is not, and would flatter the estimator in
+        estimate.py.
+        """
+        from doubt.reviewer import ReviewerModel
+        m = ReviewerModel(gamma=1.0, a=1.0)
+        p = m.review_prob(0.5, 0.5)
+        assert 0.0 < p < 1.0

@@ -30,7 +30,57 @@ model is confident, intervene when it is not. A poorly calibrated signal should
 produce blanket trust or blanket rejection, because there is nothing to
 discriminate on.
 
-## 2. Hypotheses
+## 2. Where the hypotheses come from
+
+A hypothesis without a mechanism is a guess with a p-value attached. The
+predictions below are derived from a decision problem the reviewer is actually
+facing, implemented in `src/doubt/reviewer.py`.
+
+**The organisation wants low-confidence cases reviewed.** Expected value of
+review is `v · P(error | s) · q`, which falls in confidence. That is the
+intended policy and it makes deployment safer than calibrated.
+
+**The reviewer faces something else.** Their value has a second term:
+
+    V_rev(s, v) = β · v · P(error|s) · q  +  γ · v · a
+
+The second term is **insurance**. On a high-stakes case, having reviewed is
+protective whether or not an error was present, because the question asked
+afterwards is "did you check" rather than "was checking warranted". `a` is the
+accountability regime — high where reviewers are judged on outcomes, low where
+judged on process.
+
+**The insurance term does not depend on P(error | s).** It depends on stakes
+alone. As `γ·a` grows, routing is driven by stakes rather than confidence.
+
+That alone would make routing independent of the signal, which is harmless. The
+damage comes from an empirical regularity: **stakes and confidence are
+positively correlated**, because high-value documents in most workflows are
+standard-form and well-represented in training data. A large contract is more
+boilerplate than a small one, not less. Where that holds, routing on stakes is
+routing on confidence, and the reviewer checks exactly the cases the model was
+most likely to get right.
+
+Simulated from the model, the confidence gradient in review rates:
+
+| Insurance weight γ | Accountability | Gradient | Breaks the guarantee? |
+|---:|---:|---:|:---:|
+| 0.0 | any | −1.6% | no |
+| 0.6 | 0.5 | +2.9% | yes |
+| 0.6 | 1.0 | +19.5% | yes |
+| 1.2 | 0.0 | −1.6% | **no** |
+| 1.2 | 1.0 | **+51.8%** | yes |
+
+And the boundary, sweeping how strongly stakes track confidence:
+
+| Stakes–confidence correlation | Gradient | Breaks? |
+|---:|---:|:---:|
+| 0.00 | −12.7% | no |
+| 0.25 | +3.2% | yes |
+| 0.50 | +28.0% | yes |
+| 1.00 | +77.2% | yes |
+
+## 2b. Hypotheses
 
 Stated in the direction predicted, with the null that would falsify each.
 
@@ -47,6 +97,24 @@ be *correct* overrides — changing a wrong prediction rather than a right one.
 disproportionately toward **high-confidence** cases when case stakes are high,
 independent of the confidence signal.
 *Null: routing is independent of stakes conditional on confidence.*
+
+**H4 (the moderator).** The confidence gradient in routing will be more
+positive in teams under outcome-based accountability than under process-based
+accountability. *Null: accountability regime does not moderate the gradient.*
+
+**H5 (the boundary).** The confidence gradient will be more positive in
+workflows where case stakes and model confidence are positively correlated.
+*Null: the stakes–confidence correlation does not moderate the gradient.*
+
+H4 and H5 are what make the theory falsifiable rather than merely consistent.
+H3 alone could be produced by many mechanisms — salience, laziness, distrust.
+The insurance account uniquely predicts that **process-based accountability
+protects the guarantee**, which is both surprising and actionable: it implies
+an organisation can fix a statistical problem by changing how it evaluates
+reviewers rather than by changing the model.
+
+Both moderators exist as natural variation across teams and workflows in most
+firms, so neither requires manipulation.
 
 H3 is the one that connects the halves. The simulation in `src/doubt/shift.py`
 shows that if H3 holds, deployed risk exceeds its calibrated target. If H3 is
