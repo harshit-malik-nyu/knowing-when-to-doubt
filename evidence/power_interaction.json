@@ -1,0 +1,10 @@
+{
+  "reviewers": 40,
+  "weeks": 12,
+  "icc": 0.05,
+  "effect_size": 0.05,
+  "power_if_main_effect": 0.3275848497715089,
+  "power_for_the_interaction": 0.11443438485052182,
+  "reviewers_for_main_effect": 138,
+  "reviewers_for_interaction": 549
+}

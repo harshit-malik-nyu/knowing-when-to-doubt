@@ -178,16 +178,77 @@ Each is defensible in isolation and each is a degree of freedom. If any is
 taken it will be reported as a deviation with the pre-specified result shown
 alongside.
 
-## 6. Power
+## 6. Power — computed, and it changed the design
 
-Detecting a five percentage point change in override rate, at 80% power and
-conventional significance, with clustering at the reviewer and an assumed
-intra-reviewer correlation of 0.05, requires roughly **40 reviewers and 12
-weeks**. Below about 25 reviewers the design cannot support the interaction
-test and should not be run.
+An earlier draft of this document said "roughly 40 reviewers and 12 weeks".
+That number was asserted. Computing it (`src/doubt/power.py`) shows it gives
+**11% power**, not 80%, and the correction changes what the study should be.
 
-That number is the gate on whether a partner is viable, and it should be
-checked before the conversation goes further than a first meeting.
+### Why it is so much worse than it looks
+
+Two multiplicative problems.
+
+**The hypothesis is an interaction.** Whether the confidence gradient differs
+by arm is a difference of differences, and its standard error is roughly twice
+that of a main effect — a factor of four in sample. At 40 reviewers and a
+five-point effect, power is 33% if this were a main effect and **11%** for the
+interaction actually being tested. Computing power for a main effect and then
+testing an interaction is the most common way this class of study produces an
+uninformative null.
+
+**Observations cluster at the reviewer, who sees hundreds of cases.** The
+design effect is 1 + (m−1)·ICC and it scales with cluster size, so 19,200
+decisions carry the information of **770**.
+
+### The structural fact that decides the study
+
+As decisions per reviewer grows, effective sample tends to **reviewers ÷ ICC**
+and stops:
+
+| Decisions per reviewer | Total decisions | Effective n |
+|---:|---:|---:|
+| 50 | 2,000 | 580 |
+| 400 | 16,000 | 764 |
+| 5,000 | 200,000 | 797 |
+| 50,000 | 2,000,000 | **800** |
+
+Two million decisions and forty reviewers yield eight hundred
+independent-equivalent observations. **The binding resource is reviewers, not
+decisions**, and a firm with enormous case volume and a small review team
+cannot buy its way to power by running longer. A design that plans to extend
+the study period is solving the wrong constraint.
+
+### Reviewers required, twelve weeks
+
+| Effect | ICC 0.02 | ICC 0.05 | ICC 0.10 |
+|---:|---:|---:|---:|
+| 5 points | 233 | 549 | 1,075 |
+| 8 points | 91 | 215 | 420 |
+| 10 points | 59 | 138 | 269 |
+| **15 points** | **26** | **61** | **120** |
+| 20 points | 15 | 35 | 68 |
+
+### What this means, and why the study is still worth running
+
+**It cannot detect small effects.** A five-point interaction needs a reviewer
+pool most firms do not have, and a null result at that magnitude would be
+uninformative rather than evidence of absence. The pre-registration says so
+now rather than discovering it in the discussion section.
+
+**The theory predicts a large effect.** The reviewer model puts the confidence
+gradient at −1.6% under process-based accountability and +51.8% under
+outcome-based — a swing of more than fifty points. Powering for fifteen points
+is therefore powering for roughly a third of the predicted effect, which is
+appropriately conservative rather than optimistic.
+
+**Revised requirement: 60+ reviewers at ICC 0.05, or 26 if the ICC proves
+low.** The ICC should be estimated from pre-period data before the partner
+commits, because it moves the requirement by a factor of four and is never
+known in advance.
+
+**Below 26 reviewers the study should not be run** under any assumption in the
+table above. That is the gate, and it is stricter than the number this document
+originally carried.
 
 ## 7. What the partner must provide, and what they get
 
@@ -207,7 +268,8 @@ that can be read as monitoring will change the behaviour it measures.
 
 ## 8. What would make us abandon it
 
-- No partner with 25+ reviewers and adjudicated outcomes within nine months
+- No partner with 26+ reviewers (60+ unless the ICC proves low) and
+  adjudicated outcomes within nine months
 - A partner unwilling to fix rollout order in advance
 - Pre-period data showing override rates already trending differentially
 - H3 clearly false in the pre-period, which would mean the methods half

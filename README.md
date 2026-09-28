@@ -253,6 +253,33 @@ That question is the other half of the project, and it needs an organisation.
 before any data exists, because a shift-robust procedure discovered after
 seeing deployment data is not a method contribution.
 
+## The empirical half
+
+[`docs/preregistration.md`](docs/preregistration.md) — the design, fixed before
+any data exists, because a shift-robust procedure discovered after seeing
+deployment data is a description of one dataset rather than a method.
+
+[`docs/theory.md`](docs/theory.md) — what is proved, what is conjectured, and
+what is assumed. Proposition 2 is Tibshirani et al. (2019) with our weights
+substituted and is marked as such; Proposition 3, the estimated-policy case, is
+conjectured and is where the human setting departs from the machine one.
+
+**The power calculation changed the design.** An earlier draft asserted 40
+reviewers and 12 weeks. Computed, that gives **11% power** — because the
+hypothesis is an interaction, which costs four times the sample of a main
+effect, and because clustering at the reviewer is severe.
+
+The structural fact: effective sample tends to **reviewers ÷ ICC** and stops.
+Two million decisions across forty reviewers carry the information of eight
+hundred. **The binding resource is reviewers, not decisions**, so a firm with
+enormous case volume and a small review team cannot buy power by running
+longer.
+
+Revised: 60+ reviewers for a fifteen-point effect, and the study should not be
+run below 26 under any assumption tested. The theory predicts a gradient swing
+above fifty points, so powering for fifteen is conservative rather than
+optimistic.
+
 ## Reproducing
 
 ```bash

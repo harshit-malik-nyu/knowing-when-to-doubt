@@ -1,0 +1,77 @@
+[
+  {
+    "effect": 0.05,
+    "icc": 0.02,
+    "reviewers": 233
+  },
+  {
+    "effect": 0.05,
+    "icc": 0.05,
+    "reviewers": 549
+  },
+  {
+    "effect": 0.05,
+    "icc": 0.1,
+    "reviewers": 1075
+  },
+  {
+    "effect": 0.08,
+    "icc": 0.02,
+    "reviewers": 91
+  },
+  {
+    "effect": 0.08,
+    "icc": 0.05,
+    "reviewers": 215
+  },
+  {
+    "effect": 0.08,
+    "icc": 0.1,
+    "reviewers": 420
+  },
+  {
+    "effect": 0.1,
+    "icc": 0.02,
+    "reviewers": 59
+  },
+  {
+    "effect": 0.1,
+    "icc": 0.05,
+    "reviewers": 138
+  },
+  {
+    "effect": 0.1,
+    "icc": 0.1,
+    "reviewers": 269
+  },
+  {
+    "effect": 0.15,
+    "icc": 0.02,
+    "reviewers": 26
+  },
+  {
+    "effect": 0.15,
+    "icc": 0.05,
+    "reviewers": 61
+  },
+  {
+    "effect": 0.15,
+    "icc": 0.1,
+    "reviewers": 120
+  },
+  {
+    "effect": 0.2,
+    "icc": 0.02,
+    "reviewers": 15
+  },
+  {
+    "effect": 0.2,
+    "icc": 0.05,
+    "reviewers": 35
+  },
+  {
+    "effect": 0.2,
+    "icc": 0.1,
+    "reviewers": 68
+  }
+]

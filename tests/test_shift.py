@@ -561,3 +561,84 @@ class TestBridge:
         c = cost_of_accountability(rows)
         assert c["outcome_based"]["decisions_reviewed_manually"] > \
                c["process_based"]["decisions_reviewed_manually"] * 3
+
+
+# ===========================================================================
+# Power
+# ===========================================================================
+
+class TestPower:
+
+    def test_design_effect_scales_with_cluster_size(self):
+        from doubt.power import design_effect
+        assert design_effect(400, 0.05) > design_effect(50, 0.05)
+
+    def test_effective_sample_is_capped_by_reviewers(self):
+        """
+        THE STRUCTURAL FACT. Effective n tends to reviewers/ICC and stops, so
+        two million decisions across forty reviewers carry the information of
+        eight hundred. The binding resource is reviewers, not decisions.
+        """
+        from doubt.power import effective_n, information_ceiling
+        ceiling = information_ceiling(40, 0.05)
+        assert ceiling == pytest.approx(800)
+        assert effective_n(40, 50_000, 0.05) < ceiling
+        assert effective_n(40, 50_000, 0.05) > ceiling * 0.99
+
+    def test_more_decisions_eventually_buys_nothing(self):
+        from doubt.power import effective_n
+        gain_early = effective_n(40, 400, 0.05) - effective_n(40, 50, 0.05)
+        gain_late = effective_n(40, 50_000, 0.05) - effective_n(40, 5_000, 0.05)
+        assert gain_late < gain_early / 10
+
+    def test_the_interaction_costs_roughly_four_times_the_sample(self):
+        """
+        The most common way this class of study is mis-planned: power computed
+        for a main effect, an interaction tested, an uninformative null
+        reported.
+        """
+        from doubt.power import interaction_penalty
+        p = interaction_penalty(reviewers=40, weeks=12, icc=0.05,
+                                effect_size=0.05)
+        ratio = p["reviewers_for_interaction"] / p["reviewers_for_main_effect"]
+        assert 3.0 < ratio < 5.0
+        assert p["power_for_the_interaction"] < p["power_if_main_effect"]
+
+    def test_the_original_assertion_was_wrong(self):
+        """
+        REGRESSION on a claim, not on code. The pre-registration asserted
+        40 reviewers and 12 weeks would give adequate power. It gives 11%.
+        """
+        from doubt.power import power_for
+        r = power_for(reviewers=40, weeks=12, icc=0.05, effect_size=0.05)
+        assert r.power < 0.20
+        assert not r.adequate
+
+    def test_the_revised_design_is_adequate(self):
+        from doubt.power import power_for
+        r = power_for(reviewers=61, weeks=12, icc=0.05, effect_size=0.15)
+        assert r.adequate
+
+    def test_requirements_rise_with_clustering(self):
+        from doubt.power import reviewers_required
+        low = reviewers_required(icc=0.02, effect_size=0.10)
+        high = reviewers_required(icc=0.10, effect_size=0.10)
+        assert high > low * 2
+
+    def test_unreachable_targets_return_the_cap_not_an_extrapolation(self):
+        from doubt.power import reviewers_required
+        n = reviewers_required(icc=0.30, effect_size=0.01, cap=500)
+        assert n == 500
+
+    def test_preregistration_carries_the_computed_numbers(self):
+        """
+        The document must state the corrected figure rather than the asserted
+        one, because a pre-registration with a wrong power calculation is
+        worse than none.
+        """
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[1]
+        doc = (root / "docs" / "preregistration.md").read_text()
+        assert "11% power" in doc
+        assert "binding resource is reviewers" in doc
+        assert "Below 26 reviewers the study should not be run" in doc

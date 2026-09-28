@@ -1,0 +1,142 @@
+[
+  {
+    "icc": 0.01,
+    "effect_size": 0.03,
+    "weeks": 12,
+    "reviewers_required": 354,
+    "feasible": false
+  },
+  {
+    "icc": 0.01,
+    "effect_size": 0.05,
+    "weeks": 12,
+    "reviewers_required": 128,
+    "feasible": true
+  },
+  {
+    "icc": 0.01,
+    "effect_size": 0.08,
+    "weeks": 12,
+    "reviewers_required": 50,
+    "feasible": true
+  },
+  {
+    "icc": 0.01,
+    "effect_size": 0.12,
+    "weeks": 12,
+    "reviewers_required": 23,
+    "feasible": true
+  },
+  {
+    "icc": 0.03,
+    "effect_size": 0.03,
+    "weeks": 12,
+    "reviewers_required": 939,
+    "feasible": false
+  },
+  {
+    "icc": 0.03,
+    "effect_size": 0.05,
+    "weeks": 12,
+    "reviewers_required": 338,
+    "feasible": false
+  },
+  {
+    "icc": 0.03,
+    "effect_size": 0.08,
+    "weeks": 12,
+    "reviewers_required": 132,
+    "feasible": true
+  },
+  {
+    "icc": 0.03,
+    "effect_size": 0.12,
+    "weeks": 12,
+    "reviewers_required": 59,
+    "feasible": true
+  },
+  {
+    "icc": 0.05,
+    "effect_size": 0.03,
+    "weeks": 12,
+    "reviewers_required": 1524,
+    "feasible": false
+  },
+  {
+    "icc": 0.05,
+    "effect_size": 0.05,
+    "weeks": 12,
+    "reviewers_required": 549,
+    "feasible": false
+  },
+  {
+    "icc": 0.05,
+    "effect_size": 0.08,
+    "weeks": 12,
+    "reviewers_required": 215,
+    "feasible": false
+  },
+  {
+    "icc": 0.05,
+    "effect_size": 0.12,
+    "weeks": 12,
+    "reviewers_required": 96,
+    "feasible": true
+  },
+  {
+    "icc": 0.1,
+    "effect_size": 0.03,
+    "weeks": 12,
+    "reviewers_required": 2986,
+    "feasible": false
+  },
+  {
+    "icc": 0.1,
+    "effect_size": 0.05,
+    "weeks": 12,
+    "reviewers_required": 1075,
+    "feasible": false
+  },
+  {
+    "icc": 0.1,
+    "effect_size": 0.08,
+    "weeks": 12,
+    "reviewers_required": 420,
+    "feasible": false
+  },
+  {
+    "icc": 0.1,
+    "effect_size": 0.12,
+    "weeks": 12,
+    "reviewers_required": 187,
+    "feasible": true
+  },
+  {
+    "icc": 0.2,
+    "effect_size": 0.03,
+    "weeks": 12,
+    "reviewers_required": 5000,
+    "feasible": false
+  },
+  {
+    "icc": 0.2,
+    "effect_size": 0.05,
+    "weeks": 12,
+    "reviewers_required": 2128,
+    "feasible": false
+  },
+  {
+    "icc": 0.2,
+    "effect_size": 0.08,
+    "weeks": 12,
+    "reviewers_required": 832,
+    "feasible": false
+  },
+  {
+    "icc": 0.2,
+    "effect_size": 0.12,
+    "weeks": 12,
+    "reviewers_required": 370,
+    "feasible": false
+  }
+]
