@@ -1,0 +1,34 @@
+[
+  {
+    "procedure": "fixed",
+    "violation_rate": 0.2671875,
+    "mean_exposed": 392.125,
+    "mean_risk": 0.0427651076354793,
+    "audit_cost": 945.125,
+    "trials": 40
+  },
+  {
+    "procedure": "periodic",
+    "violation_rate": 0.1515625,
+    "mean_exposed": 382.778125,
+    "mean_risk": 0.021817747063990204,
+    "audit_cost": 921.65,
+    "trials": 40
+  },
+  {
+    "procedure": "adaptive",
+    "violation_rate": 0.3546875,
+    "mean_exposed": 394.2625,
+    "mean_risk": 0.04661564861133399,
+    "audit_cost": 949.825,
+    "trials": 40
+  },
+  {
+    "procedure": "guarded",
+    "violation_rate": 0.0484375,
+    "mean_exposed": 363.2265625,
+    "mean_risk": 0.0048827041436610204,
+    "audit_cost": 875.375,
+    "trials": 40
+  }
+]

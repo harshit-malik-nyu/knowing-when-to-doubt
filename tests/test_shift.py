@@ -642,3 +642,88 @@ class TestPower:
         assert "11% power" in doc
         assert "binding resource is reviewers" in doc
         assert "Below 26 reviewers the study should not be run" in doc
+
+
+# ===========================================================================
+# Drift
+# ===========================================================================
+
+class TestDrift:
+
+    def test_the_reviewer_model_implies_drift(self):
+        """
+        The behavioural prediction creates the methods requirement: reviewers
+        who learn shift the insurance motive down, and the gradient with it.
+        """
+        from doubt.drift import DriftSchedule
+        s = DriftSchedule()
+        assert s.gamma_at(1) > s.gamma_at(8) > s.gamma_at(16)
+        assert s.gamma_at(100) >= s.gamma_floor
+
+    def test_unguarded_adaptation_loses_to_doing_nothing(self):
+        """
+        A negative result worth keeping. An ACI-style proportional update
+        chases audit noise and ends up worse than a fixed threshold, because
+        the feedback signal at realistic audit rates is a handful of errors in
+        a few dozen sampled cases.
+        """
+        from doubt.drift import compare_procedures
+        by = {r["procedure"]: r for r in
+              compare_procedures(weeks=12, trials=15, seed=101)}
+        assert by["adaptive"]["violation_rate"] > by["fixed"]["violation_rate"]
+
+    def test_the_confidence_guard_is_what_matters(self):
+        """
+        Periodic and guarded both use a bound; adaptive does not. The guard,
+        not the adaptation frequency, is what separates them.
+        """
+        from doubt.drift import compare_procedures
+        by = {r["procedure"]: r for r in
+              compare_procedures(weeks=12, trials=15, seed=101)}
+        assert by["guarded"]["violation_rate"] < by["adaptive"]["violation_rate"]
+        assert by["periodic"]["violation_rate"] < by["adaptive"]["violation_rate"]
+
+    def test_guarded_does_not_ratchet_into_accepting_nothing(self):
+        """
+        REGRESSION, and the THIRD appearance of the accept-nothing failure in
+        this project. The first guarded update raised the threshold fast and
+        lowered it only when the bound fell below alpha/2, so it climbed
+        monotonically and ended with 14 exposed cases out of 600 — a 4.8%
+        violation rate achieved by refusing to do anything.
+
+        It survived two existing tests written about exactly that mode,
+        because both were scoped to other modules. Hence this one.
+        """
+        from doubt.drift import compare_procedures
+        by = {r["procedure"]: r for r in
+              compare_procedures(weeks=16, trials=20, seed=101)}
+        assert by["guarded"]["mean_exposed"] > by["fixed"]["mean_exposed"] * 0.7, (
+            "guarded is buying coverage by refusing to auto-accept")
+
+    def test_the_update_is_symmetric_in_the_bound(self):
+        import inspect
+
+        from doubt import drift
+        src = inspect.getsource(drift.run_deployment)
+        assert "SYMMETRIC in the bound" in src
+        assert "no ratchet" in src
+
+    def test_audit_only_sees_a_sample_of_exposed_cases(self):
+        """
+        A procedure with full outcome feedback would adapt faster and would
+        not describe any real deployment.
+        """
+        import random
+
+        from doubt.drift import audit
+        from doubt.shift import Case
+        cases = [Case(0.9, i % 5 != 0, reviewed=False) for i in range(400)]
+        errs, n = audit(cases, 0.5, 0.2, random.Random(3))
+        assert 0 < n < 400
+
+    def test_a_fixed_threshold_degrades_under_drift(self):
+        from doubt.drift import run_deployment
+        r = run_deployment("fixed", weeks=16, seed=101)
+        assert r.violation_rate > 0.1
+        thresholds = {w.threshold for w in r.weeks}
+        assert len(thresholds) == 1, "a fixed procedure must not move"

@@ -253,6 +253,55 @@ That question is the other half of the project, and it needs an organisation.
 before any data exists, because a shift-robust procedure discovered after
 seeing deployment data is not a method contribution.
 
+## Drift: the behavioural prediction creates a methods requirement
+
+Every procedure above assumes the routing policy is fixed. The behavioural half
+says it is not — reviewers who see a confidence display learn from it, and the
+insurance motive driving the damaging pattern weakens as they come to trust the
+signal. Simulated from the reviewer model:
+
+| Week | Confidence gradient |
+|---:|---:|
+| 1 | **+53.0%** |
+| 4 | +43.3% |
+| 8 | +19.0% |
+| 12 | +2.3% |
+| 16 | **−1.5%** |
+
+**A procedure calibrated in week one is solving week one's problem.** Four
+procedures over sixteen weeks, with outcomes arriving through a 15% audit
+sample rather than an oracle:
+
+| Procedure | Weeks failing | Mean risk | Exposed |
+|---|---:|---:|---:|
+| Fixed | 26.7% | 0.043 | 392 |
+| Periodic refit | 15.2% | 0.022 | 383 |
+| Adaptive (ACI-style) | **35.5%** | 0.047 | 394 |
+| **Guarded** | **4.8%** | 0.005 | 363 |
+
+**Unguarded online adaptation loses to doing nothing.** At realistic audit
+rates the feedback is a handful of errors in a few dozen sampled cases, and a
+proportional update chases that noise. Sweeping the audit rate confirms the
+diagnosis — 39.6%, 37.3%, 33.5%, 28.5% at 5%, 15%, 40% and 100% audit — and
+shows that even with full outcome feedback it only ties the fixed threshold.
+
+**The confidence guard is what matters, not the adaptation frequency.**
+Periodic and guarded both move only when a Clopper-Pearson bound clears the
+target; adaptive moves on every observation. Adapting weekly *with* a guard
+beats both refitting quarterly and adapting without one.
+
+### The accept-nothing failure, third appearance
+
+The first guarded update raised the threshold quickly and lowered it only when
+the bound fell below α/2. It ratcheted monotonically and finished the
+deployment auto-accepting **14 cases out of 600** — a 4.8% violation rate
+achieved by refusing to do anything.
+
+It survived two tests written about exactly that failure mode, because both
+were scoped to other modules. The update is now symmetric in the bound, and
+exposure is reported beside every violation rate in this repository for the
+same reason.
+
 ## The empirical half
 
 [`docs/preregistration.md`](docs/preregistration.md) — the design, fixed before

@@ -165,9 +165,16 @@ Stated plainly so the gap is legible:
 2. **A minimax statement** on how much unobserved routing is tolerable before
    no procedure controls risk — Assumption A is currently binary, and the
    interesting version is quantitative.
-3. **Drift.** Reviewers learn, so $\pi$ is a moving target. The natural object
-   is a sequential procedure with time-varying weights, which is closer to
-   adaptive conformal inference than to the split setting here.
+3. **Drift, formally.** Reviewers learn, so $\pi$ is a moving target.
+   `drift.py` measures four procedures under a drifting policy and finds that
+   unguarded online adaptation loses to a fixed threshold, while the same
+   update gated on a Clopper-Pearson bound beats both. What is missing is the
+   statement: a regret or coverage bound for the guarded procedure under
+   bounded drift rate. Adaptive Conformal Inference (Gibbs and Candès, 2021)
+   provides the template, and the complication here is that feedback arrives
+   on an audit sample rather than in full — so the bound must account for
+   estimation noise in the signal driving adaptation, which is the same
+   difficulty as Proposition 3 in sequential form.
 4. **Real routing data.** Every $\pi$ in this repository is stipulated or
    recovered from stipulated behaviour. The pre-registration exists to obtain
    one that is not.
