@@ -209,8 +209,14 @@ class TestDocumentIntegrity:
         """
         t = (ROOT / "docs" / "theory.md").read_text()
         assert "This proposition is not new" in t
-        assert "Status: conjectured, not proved" in t
         assert "Tibshirani" in t
+        # Proposition 3: the estimate bound is derived, the coverage
+        # consequence is not, and the document must keep them apart.
+        # Whitespace is normalised first: prose wraps, and a consistency
+        # check that fires on a line break teaches people to ignore it.
+        flat = " ".join(t.split())
+        assert "What remains unproved is the coverage consequence" in flat
+        assert "same error this project exists to catch" in flat
 
     def test_the_simulation_disclaimer_survives(self):
         import doubt.shift as sh
@@ -230,3 +236,54 @@ class TestDocumentIntegrity:
         for row in compare_interventions(trials=6, seed=1):
             assert "uncorrected_exposed" in row
             assert "corrected_exposed" in row
+
+
+class TestBoundIsStatedHonestly:
+    """
+    The bound in docs/theory.md was conjectured from the shape of standard
+    sensitivity arguments. Stating it explicitly enough to be wrong, then
+    measuring it, is what these check.
+    """
+
+    def test_the_sup_norm_bound_is_vacuous_and_says_so(self):
+        """
+        2e/eta evaluates to 1.0 in every configuration tried, because epsilon
+        is a supremum attained at the edges of the confidence range where the
+        pilot has least data. A bound of one on a probability holds trivially.
+        """
+        from doubt.bound import theoretical_bound
+        assert theoretical_bound(0.3, 0.05) == 1.0
+        doc = " ".join(theoretical_bound.__doc__.split())
+        assert "VACUOUS in practice" in doc
+
+    def test_the_mass_weighted_bound_carries_information(self):
+        from doubt.bound import sweep_bound
+        from doubt.shift import RoutingPolicy
+        rows = sweep_bound(RoutingPolicy("reviews_high_stakes", 1.0),
+                           pilots=[800], etas=[0.05, 0.20], trials=12, seed=3)
+        assert all(r["mass_bound_holds"] for r in rows)
+        assert any(r["mass_bound_informative"] for r in rows)
+
+    def test_neither_bound_is_ever_violated(self):
+        """
+        A bound that fails is a wrong claim, not a loose one. The worst gap
+        across trials is what is checked, because a bound holding on average
+        is not a bound.
+        """
+        from doubt.bound import sweep_bound
+        from doubt.shift import RoutingPolicy
+        rows = sweep_bound(RoutingPolicy("reviews_high_stakes", 1.0),
+                           pilots=[200, 800], etas=[0.05], trials=12, seed=3)
+        for r in rows:
+            assert r["holds"]
+            assert r["mass_bound_holds"]
+
+    def test_the_looseness_is_recorded_not_hidden(self):
+        """
+        The mass-weighted bound is about twelve times the realised gap. That
+        is an improvement on vacuous and it is not tight, and the theory doc
+        must say which.
+        """
+        t = (ROOT / "docs" / "theory.md").read_text()
+        assert "vacuous" in t.lower()
+        assert "not tight" in t.lower() or "loose" in t.lower()

@@ -108,12 +108,34 @@ $\|\hat\pi - \pi\|_\infty \le \varepsilon$ and let $\hat w = \max(\eta,
 by a quantity of order $\varepsilon / \eta$, up to a constant depending on the
 error rate.
 
-**Status: conjectured, not proved.** The form follows from standard sensitivity
-arguments for inverse-probability weighting, and the $\varepsilon/\eta$ shape is
-what the clipping floor buys — bias in exchange for bounded variance. A proof
-would need the estimation error to be handled jointly with the concentration
-bound rather than sequentially, which is the technical work this document does
-not do.
+**Status: the risk-estimate bound is derived and checked; the coverage
+statement is not.** `src/doubt/bound.py` carries the derivation — an elementary
+argument on the ratio $\sum \hat w e / \sum \hat w$ — giving
+
+$$|\hat R_w - R_w| \le 2\varepsilon/\eta$$
+
+Measured against the estimator here, **that bound is vacuous**: it evaluates to
+1.0 in every configuration tried, while the realised gap is 0.02–0.06. A bound
+of one on a probability holds trivially and says nothing. The cause is that
+$\varepsilon$ is a supremum, attained at the edges of the confidence range
+where the pilot has least data and the isotonic fit is worst — nowhere near
+where the accepted mass sits.
+
+Carrying the same derivation through without discarding the distribution gives
+a mass-weighted form, $2\bar\varepsilon / \bar\eta$ with the mean absolute
+weight error over the accepted population. That is **informative in four of six
+configurations** (0.30 to 0.53) where the sup-norm form is vacuous in all six,
+and is violated in none.
+
+It is still **not tight** — roughly twelve times the realised gap — and the
+looseness is recorded rather than smoothed over.
+
+**What remains unproved is the coverage consequence.** Translating a bound on
+the risk estimate into a bound on coverage requires composing it with the
+concentration bound that turns an estimate into a threshold, and those interact
+because the same sample drives both. That composition is the technical work
+this document does not do, and calling Proposition 3 "proved" without it would
+be the same error this project exists to catch.
 
 **What the measurements say.** The gap to the oracle closes monotonically in
 pilot size — 10.0, 8.0, 6.0, 2.0, −2.0 percentage points at $n_{\text{pilot}}$

@@ -1,0 +1,80 @@
+[
+  {
+    "n_pilot": 200,
+    "eta": 0.01,
+    "epsilon_measured": 0.4147524150542727,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 1.0,
+    "realised_gap": 0.05984551233358672,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": false,
+    "trials": 40
+  },
+  {
+    "n_pilot": 200,
+    "eta": 0.05,
+    "epsilon_measured": 0.4147524150542727,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 1.0,
+    "realised_gap": 0.056048144227557925,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": false,
+    "trials": 40
+  },
+  {
+    "n_pilot": 200,
+    "eta": 0.2,
+    "epsilon_measured": 0.4147524150542727,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 0.533068422799089,
+    "realised_gap": 0.04570421767526591,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": true,
+    "trials": 40
+  },
+  {
+    "n_pilot": 800,
+    "eta": 0.01,
+    "epsilon_measured": 0.2950351836588582,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 0.3803121965657661,
+    "realised_gap": 0.0249012716229082,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": true,
+    "trials": 40
+  },
+  {
+    "n_pilot": 800,
+    "eta": 0.05,
+    "epsilon_measured": 0.2950351836588582,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 0.3803121965657661,
+    "realised_gap": 0.0249012716229082,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": true,
+    "trials": 40
+  },
+  {
+    "n_pilot": 800,
+    "eta": 0.2,
+    "epsilon_measured": 0.2950351836588582,
+    "bound_sup_norm": 1.0,
+    "bound_mass_weighted": 0.30235562367185703,
+    "realised_gap": 0.021493292354065614,
+    "holds": true,
+    "mass_bound_holds": true,
+    "sup_bound_informative": false,
+    "mass_bound_informative": true,
+    "trials": 40
+  }
+]

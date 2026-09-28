@@ -329,6 +329,37 @@ run below 26 under any assumption tested. The theory predicts a gradient swing
 above fifty points, so powering for fifteen is conservative rather than
 optimistic.
 
+## The estimated-weight bound: derived, and mostly vacuous
+
+`docs/theory.md` originally stated Proposition 3 as conjectured. `bound.py`
+now carries the derivation and, more usefully, the check.
+
+The elementary argument gives |R̂ − R| ≤ **2ε/η**. Measured against this
+estimator, that bound **evaluates to 1.0 in every configuration tried** while
+the realised gap is 0.02–0.06. A bound of one on a probability holds trivially
+and says nothing. The cause: ε is a supremum, attained at the edges of the
+confidence range where the pilot has least data — nowhere near where the
+accepted mass sits.
+
+Carrying the same derivation through without discarding the distribution gives
+a mass-weighted form:
+
+| Pilot | η | Sup-norm bound | Mass-weighted | Realised gap |
+|---:|---:|---:|---:|---:|
+| 200 | 0.05 | 1.000 (vacuous) | 1.000 (vacuous) | 0.056 |
+| 800 | 0.05 | 1.000 (vacuous) | **0.380** | 0.025 |
+| 800 | 0.20 | 1.000 (vacuous) | **0.302** | 0.022 |
+
+Informative in four of six configurations where the sup-norm form is vacuous in
+all six, violated in none — and still about **twelve times** the realised gap,
+which is recorded rather than smoothed over.
+
+**What remains unproved is the coverage consequence.** Bounding the risk
+estimate is not bounding coverage; that needs composing with the concentration
+bound, and the two interact because one sample drives both. Calling
+Proposition 3 proved without that would be the same error this project exists
+to catch.
+
 ## Keeping the claims honest
 
 Six modules were built in sequence, each producing figures that went into this
