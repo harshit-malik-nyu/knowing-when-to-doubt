@@ -329,6 +329,30 @@ run below 26 under any assumption tested. The theory predicts a gradient swing
 above fifty points, so powering for fifteen is conservative rather than
 optimistic.
 
+## Keeping the claims honest
+
+Six modules were built in sequence, each producing figures that went into this
+document. Nothing stops a later change from silently invalidating an earlier
+claim — a module moves a number, the README keeps the old one, and the
+repository quietly starts lying.
+
+`tests/test_consistency.py` recomputes every load-bearing figure and asserts
+the documents still match. Tolerant on the last digit, because Monte Carlo runs
+vary with trial count; strict on the claim, so a reversed finding fails rather
+than drifts.
+
+Three checks are structural rather than numeric:
+
+- **The oracle arm must stay flat** across pilot size. If it moves again, a
+  shared random stream has crept back in.
+- **Guarded must win on both columns.** Winning on violations alone is the
+  accept-nothing failure, which has appeared three times in this project.
+- **Any results dict carrying a violation rate must carry exposure too.** That
+  reporting discipline, not the tests, is what caught it each time.
+
+All seventeen passed on the first run, which is the point: they are a ratchet
+against future drift rather than a fix for present error.
+
 ## Reproducing
 
 ```bash
