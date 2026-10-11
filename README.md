@@ -1,5 +1,8 @@
 # Knowing when to doubt
 
+> **Validation update (2026-10-10):** certify_routing uses randomized retention and simultaneous binomial bounds; estimated real reviewer policies do not inherit the guarantee. See the [current decision brief](docs/decision-brief.md) and [reproducible analysis](analysis/README.md). Historical evidence and figures retain their original run context; this update supersedes conflicting claims below.
+
+
 **When reviewers decide what to check by looking at the model's confidence,
 the guarantee calibrated on that confidence stops holding.**
 

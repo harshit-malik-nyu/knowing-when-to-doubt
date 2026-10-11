@@ -54,6 +54,7 @@ simulation for a question about a statistical procedure.
 
 from __future__ import annotations
 
+from functools import lru_cache
 import math
 import random
 from dataclasses import dataclass, field
@@ -174,12 +175,15 @@ def _log_binom_cdf(k: int, n: int, p: float) -> float:
     return total
 
 
+@lru_cache(maxsize=32768)
 def clopper_pearson_upper(k: int, n: int, delta: float = 0.05) -> float:
     """Exact upper bound on a binomial rate; valid at k=0 and small n."""
     if n == 0:
         return 1.0
     if k >= n:
         return 1.0
+    if k == 0:
+        return -math.expm1(math.log(delta) / n)
     target = math.log(delta)
     lo, hi = k / n, 1.0
     for _ in range(120):
@@ -221,7 +225,11 @@ def weighted_threshold(calibration: list[Case], policy: RoutingPolicy,
                        alpha: float = 0.05, delta: float = 0.05,
                        grid: int = 100) -> float:
     """
-    Threshold corrected for the routing policy.
+    Empirical threshold approximation for the routing policy.
+
+    Kish pseudo-counts are not binomial observations; no exact coverage
+    guarantee is claimed for this historical estimator. Use certify_routing
+    for a simultaneous finite-grid certificate under known iid routing.
 
     A case is only exposed in production if the reviewer declines to look at
     it, which happens with probability 1 − π(s). The deployment distribution
@@ -350,3 +358,35 @@ def run_experiment(policy: RoutingPolicy, *, alpha: float = 0.05,
             res.weighted_violations += 1
 
     return res
+
+
+def certify_routing(calibration, policy, *, alpha=0.05, delta=0.05,
+                    grid=100, seed=0):
+    """Certify the exposed population using independent simulated routing.
+
+    Assumptions: iid cases, a fixed score, and the true routing policy fixed
+    before calibration. Randomized retention with probability 1-pi(score)
+    creates actual binomial observations, rather than weighted pseudo-counts.
+    An estimated/misspecified policy does NOT inherit this guarantee.
+    """
+    if not 0 < alpha < 1 or not 0 < delta < 1 or grid < 1:
+        raise ValueError("invalid risk level or grid")
+    if any(not math.isfinite(c.confidence) or not 0 <= c.confidence <= 1
+           for c in calibration):
+        raise ValueError("confidence must be finite and in [0, 1]")
+    retained = [c for c in route(calibration, policy, random.Random(seed))
+                if not c.reviewed]
+    for i in range(grid+1):
+        threshold = i/grid
+        accepted = [c for c in retained if c.confidence >= threshold]
+        k = sum(not c.correct for c in accepted)
+        if not accepted or k/len(accepted) > alpha:
+            continue
+        upper = clopper_pearson_upper(k, len(accepted), delta/(grid+1))
+        if upper <= alpha:
+            return {"threshold": threshold, "feasible": True,
+                    "risk_upper_bound": upper, "n_accepted": len(accepted),
+                    "alpha": alpha, "delta": delta, "routing_seed": seed}
+    return {"threshold": math.nextafter(1., math.inf), "feasible": False,
+            "risk_upper_bound": None, "n_accepted": 0,
+            "alpha": alpha, "delta": delta, "routing_seed": seed}

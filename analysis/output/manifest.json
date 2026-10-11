@@ -1,0 +1,19 @@
+{
+  "external_services_required": false,
+  "input_sha256": {
+    "evidence/shift.json": "ccd3308ab3c04f8c17563b1eb833d087a0d027fc9f3946fb401cfa42e83bc914"
+  },
+  "outputs": {
+    "query_1.csv": "dd55c73d0a58396c19c43ec41da33fa0782e9b89a11c8b4e1fb15a78d06624f8",
+    "query_2.csv": "4674711d16c8a46b4c3bde0085166664b59b2119834ed9ab03928f84f33bf5d9"
+  },
+  "project": "knowing-when-to-doubt",
+  "quality_checks": [
+    "SQL type and domain constraints",
+    "row-count reconciliation",
+    "SQLite integrity"
+  ],
+  "query_sha256": "7a0dc6e19b7414e1130deed8d9e4a0e18f5ceb4ce357d35d78543fe3b0ebe25d",
+  "rows": 6,
+  "scope": "Historical simulated routing shift; importance-weighted Kish bounds are heuristic, not an exact certificate."
+}
