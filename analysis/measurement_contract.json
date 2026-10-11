@@ -1,0 +1,23 @@
+{
+  "decision": "Route uncertain cases while preserving a defensible error guarantee for the deployed policy.",
+  "primary_outcome": "Accepted-decision error risk under the frozen routing policy, jointly reported with acceptance coverage and review burden.",
+  "denominator": "All eligible routed cases for coverage; accepted cases with the required valid labels for risk certification.",
+  "independence_unit": "Independent source case; repeated observations and shared-source cases require dependence-aware design.",
+  "quality_guardrail": "Known routing/retention mechanism, adequate calibration support and simultaneous threshold control.",
+  "minimum_data": "Case IDs, fixed routing policy, inclusion/retention probabilities, retained Bernoulli outcomes, labels, thresholds and calibration split.",
+  "failure_handling": "Unknown or outcome-dependent retention invalidates the claimed guarantee. Do not substitute weighted pseudo-counts for actual retained trials.",
+  "release_rule": "Use certification only under the stated known-policy assumptions. Weighted Kish bounds remain heuristic; otherwise return inconclusive.",
+  "reversal": "Routing changes, probabilities become unknown, or shifted cases lack calibration support.",
+  "project": "knowing-when-to-doubt",
+  "status": "PROPOSED MEASUREMENT CONTRACT; NOT AN EXECUTED DOMAIN EXPERIMENT",
+  "defense": [
+    [
+      "Why not use effective sample size as a certificate?",
+      "A Kish effective size summarizes weighting. By itself it does not make weighted outcomes an exact binomial experiment."
+    ],
+    [
+      "What changes the operating decision?",
+      "A risk bound can rule out automation even when average accuracy looks good, sending those cases to review."
+    ]
+  ]
+}
