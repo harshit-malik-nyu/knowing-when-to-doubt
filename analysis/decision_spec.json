@@ -1,0 +1,113 @@
+{
+  "project": "knowing-when-to-doubt",
+  "title": "Recalibrate routing before reallocating scarce specialist review",
+  "decision_owner": "Quality operations manager",
+  "observed_evidence": "Historical weighted Kish pseudo-count bounds are heuristic. The newer known-policy certification uses retained Bernoulli observations and simultaneous bounds under explicit routing assumptions.",
+  "executive_recommendation": "Freeze the routing policy and certify on the corresponding exposed population before reducing review coverage. Keep shift monitoring in the operating cost.",
+  "priorities": [
+    "Separate policy development, calibration and exposed-risk evaluation.",
+    "Reserve reviewer capacity for drift audits, not just the routed queue.",
+    "Recalibrate after a routing change instead of reusing a historical certificate."
+  ],
+  "reversal": "If shift increases exposed incident risk beyond the gate, restore review coverage or stop automation even if aggregate accuracy stays constant.",
+  "uncertainty": "Simulation validates conditional mechanics, not deployment exchangeability or reviewer behavior.",
+  "economics": {
+    "evidence_status": "ILLUSTRATIVE ASSUMPTIONS, NOT MEASURED COSTS OR RISK",
+    "period": "one planning year",
+    "volume": 25000,
+    "review_capacity_hours": 1600,
+    "loss_per_incident_usd": 300,
+    "max_incident_rate": 0.004,
+    "options": [
+      {
+        "name": "Uniform 30% specialist review",
+        "fixed_usd": 0,
+        "incident_rate": 0.003,
+        "activities": [
+          {
+            "name": "Specialist review",
+            "unit": "reviewer_hour",
+            "units_per_case": 0.05999999999999999,
+            "usd_per_unit": 80,
+            "cash": false
+          }
+        ]
+      },
+      {
+        "name": "Frozen calibrated routing plus drift audit",
+        "fixed_usd": 14000,
+        "incident_rate": 0.0025,
+        "activities": [
+          {
+            "name": "Routed review: 20% at 14 minutes",
+            "unit": "reviewer_hour",
+            "units_per_case": 0.04666666666666667,
+            "usd_per_unit": 80,
+            "cash": false
+          },
+          {
+            "name": "Drift audit: 5% at 8 minutes",
+            "unit": "reviewer_hour",
+            "units_per_case": 0.006666666666666667,
+            "usd_per_unit": 80,
+            "cash": false
+          }
+        ]
+      },
+      {
+        "name": "Confidence routing without recalibration",
+        "fixed_usd": 4000,
+        "incident_rate": 0.012,
+        "activities": [
+          {
+            "name": "Confidence queue: 10% at 12 minutes",
+            "unit": "reviewer_hour",
+            "units_per_case": 0.020000000000000004,
+            "usd_per_unit": 80,
+            "cash": false
+          }
+        ]
+      }
+    ]
+  },
+  "product": {
+    "seed": 736,
+    "randomization_unit": "review team / queue cluster",
+    "stages": [
+      "queue_opened",
+      "risk_review_completed",
+      "routing_decision_saved"
+    ],
+    "incident_definition": "exposed unsafe case",
+    "retention_interpretation": "team processes another eligible queue",
+    "observation_day": 56,
+    "minimum_activation_lift": 0.02,
+    "maximum_incident_increase": 0.005,
+    "planning_baseline": 0.45,
+    "minimum_detectable_effect": 0.05,
+    "segments": [
+      {
+        "name": "stable_queue",
+        "start_probability": 0.9,
+        "control_activation": 0.64,
+        "treatment_delta": 0.15,
+        "apply_probability": 0.88,
+        "control_incident": 0.004,
+        "treatment_incident": 0.004,
+        "return7": 0.55,
+        "return28": 0.35
+      },
+      {
+        "name": "shifted_queue",
+        "start_probability": 0.8200000000000001,
+        "control_activation": 0.52,
+        "treatment_delta": -0.1,
+        "apply_probability": 0.8,
+        "control_incident": 0.01,
+        "treatment_incident": 0.064,
+        "return7": 0.43000000000000005,
+        "return28": 0.24999999999999997
+      }
+    ]
+  }
+}

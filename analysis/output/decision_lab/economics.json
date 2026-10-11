@@ -1,0 +1,2207 @@
+{
+  "base_case": {
+    "cost_factor": 1.0,
+    "options": [
+      {
+        "capacity_gate_pass": true,
+        "cash_outlay_usd": 0.0,
+        "components": [
+          {
+            "activity": "Specialist review",
+            "cash_outlay_usd": 0.0,
+            "economic_cost_usd": 119999.99999999999,
+            "quantity": 1499.9999999999998,
+            "unit": "reviewer_hour"
+          }
+        ],
+        "economic_cost_usd": 142500.0,
+        "expected_incidents": 75.0,
+        "feasible": true,
+        "option": "Uniform 30% specialist review",
+        "reviewer_hours": 1500.0,
+        "risk_gate_pass": true,
+        "scenario_loss_usd": 22500.0,
+        "volume": 25000.0
+      },
+      {
+        "capacity_gate_pass": true,
+        "cash_outlay_usd": 14000.0,
+        "components": [
+          {
+            "activity": "Routed review: 20% at 14 minutes",
+            "cash_outlay_usd": 0.0,
+            "economic_cost_usd": 93333.33333333334,
+            "quantity": 1166.6666666666667,
+            "unit": "reviewer_hour"
+          },
+          {
+            "activity": "Drift audit: 5% at 8 minutes",
+            "cash_outlay_usd": 0.0,
+            "economic_cost_usd": 13333.333333333336,
+            "quantity": 166.66666666666669,
+            "unit": "reviewer_hour"
+          }
+        ],
+        "economic_cost_usd": 139416.67,
+        "expected_incidents": 62.5,
+        "feasible": true,
+        "option": "Frozen calibrated routing plus drift audit",
+        "reviewer_hours": 1333.333,
+        "risk_gate_pass": true,
+        "scenario_loss_usd": 18750.0,
+        "volume": 25000.0
+      },
+      {
+        "capacity_gate_pass": true,
+        "cash_outlay_usd": 4000.0,
+        "components": [
+          {
+            "activity": "Confidence queue: 10% at 12 minutes",
+            "cash_outlay_usd": 0.0,
+            "economic_cost_usd": 40000.00000000001,
+            "quantity": 500.0000000000001,
+            "unit": "reviewer_hour"
+          }
+        ],
+        "economic_cost_usd": 134000.0,
+        "expected_incidents": 300.0,
+        "feasible": false,
+        "option": "Confidence routing without recalibration",
+        "reviewer_hours": 500.0,
+        "risk_gate_pass": false,
+        "scenario_loss_usd": 90000.0,
+        "volume": 25000.0
+      }
+    ],
+    "recommended_if_assumptions_hold": "Frozen calibrated routing plus drift audit",
+    "risk_factor": 1.0,
+    "volume_factor": 1.0
+  },
+  "break_even": [
+    {
+      "additional_fixed_usd": 14000,
+      "minimum_integer_volume_to_break_even": 20488,
+      "option": "Frozen calibrated routing plus drift audit",
+      "qualification": "Positive unit advantage required; risk and capacity gates still apply.",
+      "relative_to": "Uniform 30% specialist review",
+      "unit_economic_advantage_usd": 0.683333
+    },
+    {
+      "additional_fixed_usd": 4000,
+      "minimum_integer_volume_to_break_even": 8001,
+      "option": "Confidence routing without recalibration",
+      "qualification": "Positive unit advantage required; risk and capacity gates still apply.",
+      "relative_to": "Uniform 30% specialist review",
+      "unit_economic_advantage_usd": 0.5
+    }
+  ],
+  "evidence_status": "ILLUSTRATIVE PLANNING ASSUMPTIONS; NOT OBSERVED ROI",
+  "scenarios": [
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 44999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 56250.0,
+          "expected_incidents": 37.5,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 11250.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 35000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 5000.000000000001,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 63375.0,
+          "expected_incidents": 31.25,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 9375.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 15000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 64000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": "Uniform 30% specialist review",
+      "risk_factor": 1,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 44999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 67500.0,
+          "expected_incidents": 75.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 22500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 35000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 5000.000000000001,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 72750.0,
+          "expected_incidents": 62.5,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 18750.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 15000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 109000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 44999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 90000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 35000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 5000.000000000001,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 91500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 15000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 199000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 59999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 71250.0,
+          "expected_incidents": 37.5,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 11250.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 46666.66666666667,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 6666.666666666668,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 76708.33,
+          "expected_incidents": 31.25,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 9375.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 69000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": "Uniform 30% specialist review",
+      "risk_factor": 1,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 59999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 82500.0,
+          "expected_incidents": 75.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 22500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 46666.66666666667,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 6666.666666666668,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 86083.33,
+          "expected_incidents": 62.5,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 18750.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 114000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 59999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 105000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 46666.66666666667,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 6666.666666666668,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 104833.33,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 204000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 101250.0,
+          "expected_incidents": 37.5,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 11250.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 103375.0,
+          "expected_incidents": 31.25,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 9375.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 79000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": "Uniform 30% specialist review",
+      "risk_factor": 1,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 112500.0,
+          "expected_incidents": 75.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 22500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 112750.0,
+          "expected_incidents": 62.5,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 18750.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 124000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 749.9999999999999,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 135000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 750.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 583.3333333333334,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 83.33333333333334,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 131500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 12500.0
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 250.00000000000006,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 214000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 250.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 12500.0
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 0.5
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 112500.0,
+          "expected_incidents": 75.0,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 22500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 112750.0,
+          "expected_incidents": 62.5,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 18750.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 124000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": "Uniform 30% specialist review",
+      "risk_factor": 1,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 135000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 131500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 214000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 89999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 180000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 70000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 10000.000000000002,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 169000.0,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 30000.000000000007,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 394000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 119999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 142500.0,
+          "expected_incidents": 75.0,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 22500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 93333.33333333334,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 13333.333333333336,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 139416.67,
+          "expected_incidents": 62.5,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 18750.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 134000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": "Frozen calibrated routing plus drift audit",
+      "risk_factor": 1,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 119999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 165000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 93333.33333333334,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 13333.333333333336,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 158166.67,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 224000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 119999.99999999999,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 210000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 93333.33333333334,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 13333.333333333336,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 195666.67,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 404000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 202500.0,
+          "expected_incidents": 75.0,
+          "feasible": true,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 22500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 192750.0,
+          "expected_incidents": 62.5,
+          "feasible": true,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 18750.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 154000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": "Frozen calibrated routing plus drift audit",
+      "risk_factor": 1,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 225000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 45000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 211500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 37500.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 244000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 1499.9999999999998,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 270000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 1500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 1166.6666666666667,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 166.66666666666669,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 249000.0,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 1333.333,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 25000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 500.0000000000001,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 424000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 500.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 25000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 1
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 225000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 45000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 211500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 37500.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 244000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 1,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 270000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 249000.0,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 424000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 0.75,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 179999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 360000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 140000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 20000.000000000004,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 324000.0,
+          "expected_incidents": 500.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 150000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 60000.000000000015,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 784000.0,
+          "expected_incidents": 2400.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 720000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 239999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 285000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 45000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 186666.6666666667,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 26666.66666666667,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 264833.33,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 37500.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 80000.00000000001,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 264000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 1,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 239999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 330000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 186666.6666666667,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 26666.66666666667,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 302333.33,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 80000.00000000001,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 444000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 239999.99999999997,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 420000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 186666.6666666667,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 26666.66666666667,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 377333.33,
+          "expected_incidents": 500.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 150000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 80000.00000000001,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 804000.0,
+          "expected_incidents": 2400.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 720000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 359999.99999999994,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 405000.0,
+          "expected_incidents": 150.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 45000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 280000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 371500.0,
+          "expected_incidents": 125.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": true,
+          "scenario_loss_usd": 37500.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 120000.00000000003,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 304000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 1,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 359999.99999999994,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 450000.0,
+          "expected_incidents": 300.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 90000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 280000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 409000.0,
+          "expected_incidents": 250.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 75000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 120000.00000000003,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 484000.0,
+          "expected_incidents": 1200.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 360000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 2,
+      "volume_factor": 2
+    },
+    {
+      "cost_factor": 1.5,
+      "options": [
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 0.0,
+          "components": [
+            {
+              "activity": "Specialist review",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 359999.99999999994,
+              "quantity": 2999.9999999999995,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 540000.0,
+          "expected_incidents": 600.0,
+          "feasible": false,
+          "option": "Uniform 30% specialist review",
+          "reviewer_hours": 3000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 180000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": false,
+          "cash_outlay_usd": 14000.0,
+          "components": [
+            {
+              "activity": "Routed review: 20% at 14 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 280000.0,
+              "quantity": 2333.3333333333335,
+              "unit": "reviewer_hour"
+            },
+            {
+              "activity": "Drift audit: 5% at 8 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 40000.00000000001,
+              "quantity": 333.33333333333337,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 484000.0,
+          "expected_incidents": 500.0,
+          "feasible": false,
+          "option": "Frozen calibrated routing plus drift audit",
+          "reviewer_hours": 2666.667,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 150000.0,
+          "volume": 50000
+        },
+        {
+          "capacity_gate_pass": true,
+          "cash_outlay_usd": 4000.0,
+          "components": [
+            {
+              "activity": "Confidence queue: 10% at 12 minutes",
+              "cash_outlay_usd": 0.0,
+              "economic_cost_usd": 120000.00000000003,
+              "quantity": 1000.0000000000002,
+              "unit": "reviewer_hour"
+            }
+          ],
+          "economic_cost_usd": 844000.0,
+          "expected_incidents": 2400.0,
+          "feasible": false,
+          "option": "Confidence routing without recalibration",
+          "reviewer_hours": 1000.0,
+          "risk_gate_pass": false,
+          "scenario_loss_usd": 720000.0,
+          "volume": 50000
+        }
+      ],
+      "recommended_if_assumptions_hold": null,
+      "risk_factor": 4,
+      "volume_factor": 2
+    }
+  ]
+}

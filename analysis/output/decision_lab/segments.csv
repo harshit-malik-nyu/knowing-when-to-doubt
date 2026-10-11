@@ -1,0 +1,5 @@
+segment,arm,assigned,activated,activation_itt,incidents,incident_itt
+shifted_queue,control,640,238,0.371875,2,0.003125
+shifted_queue,treatment,640,167,0.2609375,17,0.0265625
+stable_queue,control,640,313,0.4890625,0,0.0
+stable_queue,treatment,640,406,0.634375,2,0.003125

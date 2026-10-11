@@ -16,9 +16,11 @@ Seeded policy stress tests validate behavior under specified routing models with
 
 ## Economics and sensitivity
 
-`analysis/business_case.py` executes a transparent planning model. Inputs in `analysis/assumptions.json` are illustrative: 5,000 cases per period, 15 baseline minutes, 9 assisted minutes, $60 per hour and $5,000 fixed cost. Net period value equals cases × [(baseline − assisted minutes) × hourly cost / 60 − quality-loss cost per case] − fixed cost. The committed output shows assisted time at 0.5×, 1× and 1.5× and calculates break-even volume. A nonpositive unit benefit has no finite break-even. Labor capacity released is not cash savings unless staffing or spend changes.
+The current [executive decision summary](../analysis/output/decision_lab/executive-summary.md) compares **Uniform 30% specialist review**, **Frozen calibrated routing plus drift audit**, and **Confidence routing without recalibration**. The model separates Confidence queue: 10% at 12 minutes, Drift audit: 5% at 8 minutes, Routed review: 20% at 14 minutes, Specialist review.
 
-The zero quality-loss-cost input is an explicit scenario assumption. It must not erase the project's primary risk. Prefer an option only if it passes the safety/quality criteria and remains economical under plausible adverse assumptions. Do not monetize false positives, missed harms or causal business impact using unsupported point estimates.
+The [assumption register](../analysis/decision_spec.json) labels all quantities, unit costs, incident rates and risk ceilings as planning assumptions. A 27-scenario grid varies volume, activity costs and incident risk. Risk and reviewer-capacity gates can veto the cheapest alternative. Expected-loss scenarios, salaried capacity and actual cash outlay are reported separately. The older `business_case.json` is a simple illustrative baseline, superseded for option selection by this richer model.
+
+**Decision reversal:** If shift increases exposed incident risk beyond the gate, restore review coverage or stop automation even if aggregate accuracy stays constant.
 
 ## Product measurement
 
@@ -41,3 +43,19 @@ For the delivered offline version, acceptance means all available offline regres
 ## Interview walkthrough
 
 Explain the business decision first, then trace one result through the SQL to its source. Demonstrate the failure case that motivated the correction. Change an economic input and describe the decision boundary. Close by separating measured retrospective evidence, simulated validation and what remains unknown. This demonstrates data, business and product analysis without implying experience or outcomes the repository cannot establish.
+
+## Product analysis and experiment decision
+
+The decision laboratory supplies 2,560 explicitly synthetic assigned units across eight weekly cohorts and two project-specific segments. Its stage funnel uses all assigned units, including non-starters. D28 retention excludes immature cohorts; it never treats unobserved returns as failures. Segment results are exploratory.
+
+**Stages:** queue_opened → risk_review_completed → routing_decision_saved. **Guardrail incident:** exposed unsafe case. **Unit:** review team / queue cluster. **Repeat-use interpretation:** team processes another eligible queue.
+
+The synthetic A/B decision uses intention-to-treat activation, an incident-rate guardrail, Wilson/Newcombe uncertainty, allocation diagnostics and a fixed-horizon sample-size plan. A primary metric win is insufficient when the guardrail fails. There is no real-world causal or adoption claim. Confirmatory rollout would require a prespecified population, meaningful minimum effect, acceptable incident margin and an appropriate cluster design; these are defined as requirements, not fabricated approvals.
+
+**Prioritized next decisions:**
+
+1. Separate policy development, calibration and exposed-risk evaluation.
+2. Reserve reviewer capacity for drift audits, not just the routed queue.
+3. Recalibrate after a routing change instead of reusing a historical certificate.
+
+The workflow-activation experiment is an adoption-mechanics study; it does not replace the domain quality metric above. The synthetic fixture deliberately includes a harmful treatment segment. Its hold result is a validation success, not evidence that a real product failed.

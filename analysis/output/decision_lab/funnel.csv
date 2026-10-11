@@ -1,0 +1,3 @@
+arm,assigned,started,completed,activated,incidents,activation_itt,incident_itt,incidents_per_completed,never_started,abandoned,not_applied
+control,1280,1084,651,551,2,0.43046875,0.0015625,0.0030721966205837174,196,433,100
+treatment,1280,1121,689,573,19,0.44765625,0.01484375,0.027576197387518143,159,432,116
